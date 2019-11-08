@@ -1,10 +1,8 @@
 workflows:
   myworkflow:
-    lint:
-      steps:
-      - run: terraform fmt -recursive
     plan:
       steps:
+      - run: terraform fmt -recursive
       - run: terraform init -input=false -no-color
       
       # If you're using workspaces you need to select the workspace using the
