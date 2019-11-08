@@ -1,0 +1,20 @@
+workflows:
+  myworkflow:
+    lint:
+      steps:
+      - run: terraform fmt -recursive
+    plan:
+      steps:
+      - run: terraform init -input=false -no-color
+      
+      # If you're using workspaces you need to select the workspace using the
+      # $WORKSPACE environment variable.
+      - run: terraform workspace select $WORKSPACE
+      
+      # You MUST output the plan using -out $PLANFILE because Atlantis expects
+      # plans to be in a specific location.
+      - run: terraform plan -input=false -refresh -out $PLANFILE
+    apply:
+      steps:
+      # Again, you must use the $PLANFILE environment variable.
+      - run: terraform apply -no-color $PLANFILE
