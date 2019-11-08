@@ -1,1 +1,1 @@
-resource "null_resource" "foobar" {}
+resource "some_resource" "example" {}
