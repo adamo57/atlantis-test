@@ -1,4 +1,8 @@
 version: 3
+
+projects:
+- dir: .
+  workflow: myworkflow
 workflows:
   myworkflow:
     plan:
